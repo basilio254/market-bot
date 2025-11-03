@@ -11,7 +11,7 @@ st.set_page_config(
 )
 
 # --- Gemini API Configuration ---
-API_KEY = st.secrets["GOOGLE_API_KEY"]  # API key from Streamlit secrets
+API_KEY = st.secrets["AIzaSyCh97F6OkSXoGIGbZ7Bhd1lfne77HGOaUI"]  # API key from Streamlit secrets
 API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key={API_KEY}"
 
 # System prompt to define the chatbot's persona
