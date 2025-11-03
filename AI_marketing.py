@@ -11,7 +11,21 @@ st.set_page_config(
 )
 
 # --- Gemini API Configuration ---
-API_KEY = st.secrets[""]  # API key from Streamlit secrets
+# Try to get API key from Streamlit secrets.
+# If not found (e.g., in this Canvas), default to "",
+# which allows the Canvas environment to inject the key.
+API_KEY = st.secrets.get("API_KEY", "")
+
+# Secrets
+# Provide environment variables and other secrets to your app using TOML format.
+# This information is encrypted and served securely to your app at runtime.
+# Learn more about Secrets in our docs. Changes take around a minute to propagate.
+#
+# In this specific environment, the API_KEY is injected automatically.
+# If you were running this on your own, you would add a .streamlit/secrets.toml file
+# and put your key there, like this:
+# API_KEY = "YOUR_ACTUAL_GOOGLE_API_KEY"
+
 API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key={API_KEY}"
 
 # System prompt to define the chatbot's persona
@@ -176,3 +190,5 @@ if prompt := st.chat_input("Ask about SEO, social media, ads..."):
                 error_message = f"Sorry, I encountered an error: {e}"
                 st.error(error_message)
                 st.session_state.messages.append({"role": "assistant", "content": error_message, "sources": []})
+
+
